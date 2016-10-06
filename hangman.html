@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div> Type to guess the word: </div>
+	<div id=displayTxt> </div>
+
+	<script>
+	// 1a. guess the word
+		var word = "apple";
+
+	// 1b. split word into an array
+		var wordArray = word.split("");
+
+	// 2a. make blank lines for player to guess
+		var blankArray = [];
+	
+	// 2b. make put _ in blank array.
+		for (var i = 0; i < word.length; i++){
+			blankArray.push(" _ ");
+		}
+
+	// 2c. display blank array on screen
+		document.getElementById("displayTxt").innerHTML = blankArray;
+
+	// 3. player guesses lowerCaseLttr
+	    document.onkeyup = function playerGuess(dude){
+	    	// get keypress #
+	    	var keyCode = dude.keyCode;
+	        console.log(keyCode); //retuns a unicode number
+
+	        //convert # to LETTER
+	        var lttr = String.fromCharCode(keyCode);
+	        console.log(lttr); //retuns capital letter
+
+	        // convert LETTER to letter
+	        var lowerCaseLttr = lttr.toLowerCase();
+	        console.log(lowerCaseLttr); //make lowercase
+
+	        checkLttr(lowerCaseLttr);
+	    };
+
+
+	// 4. check if lowerCaseLttr matches the anything in array
+		function checkLttr(lowerCaseLttr){
+			for (var i = 0; i < word.length; i++){
+				if(wordArray[i] === lowerCaseLttr){  //if the guess matches the word
+					blankArray[i] = lowerCaseLttr;   // replace the blank with the letter
+					document.getElementById("displayTxt").innerHTML = blankArray; //display
+				}
+			}
+		}
+	</script>
+</body>
+</html>
